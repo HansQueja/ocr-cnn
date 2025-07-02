@@ -1,13 +1,14 @@
 import numpy as np
 
-from helpers.cnn import convolutional, mean_pooling, max_pooling, backpropagation_cnn
-from helpers.ann import initialize_nn, feedforward, backpropagation
+from helpers.cnn import convolutional, mean_pooling, max_pooling
 
-def predict(pooling=0):
-    train_data = np.load('dataset/test_dataset.npz')
+def predict(pooling=0, kernel=3):
+    train_data = np.load('dataset/alphanumeric_test_dataset.npz')
     X_test, y_test = train_data['X'], train_data['y']
 
-    weights, biases, kernels = load_model(pooling)
+    index_to_char = {i: char for i, char in enumerate('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ')}
+
+    weights, biases, kernels = load_model(pooling, kernel)
 
     correct = 0
 
@@ -34,7 +35,7 @@ def predict(pooling=0):
         y_pred_probs = softmax(logits)
         y_pred_class = np.argmax(y_pred_probs)
 
-        print(f"Sample {i}: Predicted = {y_pred_class}, Actual = {y_test[i]}")
+        print(f"Sample {i}: Predicted = {index_to_char[y_pred_class]}, Actual = {index_to_char[y_test[i]]}")
 
         if y_pred_class == y_test[i]:
             correct += 1
@@ -50,14 +51,14 @@ def softmax(x):
     exps = np.exp(x - np.max(x))  # for numerical stability
     return exps / np.sum(exps)
 
-def load_model(pooling):
-    filename = None
+def load_model(pooling, kernel):
+    filename = "model/" + str(kernel) + "/"
     if pooling == 1:
-        filename = "model/ocr_model_mean_pooling.npz"
+        filename += "ocr_model_mean_pooling.npz"
     elif pooling == 2:
-        filename = "model/ocr_model_max_pooling.npz"
+        filename += "ocr_model_max_pooling.npz"
     else:
-        filename = "model/ocr_model_no_pooling.npz"
+        filename += "ocr_model_no_pooling.npz"
 
     data = np.load(filename, allow_pickle=True)
     weights = data["weights"]
