@@ -19,13 +19,13 @@ def predict(pooling=0, kernel=3):
 
         # If mean pooling
         if pooling == 1:
-            print("Performing Mean Pooling")
+            #print("Performing Mean Pooling")
             pooled = mean_pooling(feature_maps, pool_size=(2, 2), stride=(1, 1))
         elif pooling == 2:
-            print("Performing Max Pooling")
+            #print("Performing Max Pooling")
             pooled = max_pooling(feature_maps, pool_size=(2, 2), stride=(1, 1))
         else:
-            print("Performing No Pooling")
+            #print("Performing No Pooling")
             pooled = np.array(feature_maps)
 
         flatten = pooled.flatten()
