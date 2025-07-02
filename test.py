@@ -15,7 +15,7 @@ def main():
 
     index_to_char = {i: char for i, char in enumerate('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ')}
 
-    weights, biases, kernels = load_model(0, 8)
+    weights, biases, kernels = load_model(0, 16)
 
     feature_maps, _, _ = convolutional(input_val, kernels)
 
