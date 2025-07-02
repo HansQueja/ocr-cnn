@@ -4,22 +4,23 @@ from helpers.cnn import convolutional, mean_pooling, max_pooling, backpropagatio
 from helpers.ann import initialize_nn, feedforward, backpropagation
 
 def train(epochs, pooling=0):
-    train_data = np.load('dataset/train_dataset.npz')
+    train_data = np.load('dataset/alphanumeric_train_dataset.npz')
     X_train, y_train = train_data['X'], train_data['y']
 
-    total_inputs = 15
-    total_outputs = 10
-    learning_rate = 0.005
+    total_kernels = 1
+    total_inputs = 15 * total_kernels
+    total_outputs = 36
+    learning_rate = 0.001
     best_loss = float('inf')
     patience = 10
     patience_counter = 0
 
     kernels = []
-    for i in range(1):
+    for i in range(total_kernels):
         kernels.append(np.random.randn(3, 3) * 0.1)
 
     if pooling in [1, 2]:
-        total_inputs = 8
+        total_inputs = 8 * total_kernels
 
     weights, biases = initialize_nn(total_inputs, total_outputs)
 
@@ -72,7 +73,7 @@ def train(epochs, pooling=0):
     save_model(weights, biases, kernels, pooling)
 
 
-def to_one_hot(label_index, num_classes=10):
+def to_one_hot(label_index, num_classes=36):
     one_hot = np.zeros(num_classes)
     one_hot[label_index] = 1
     return one_hot
