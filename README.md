@@ -19,6 +19,35 @@ Where  represents the learning rate and  is the partial derivative of the loss w
 
 The system is designed with a command-line interface (CLI) to allow for rapid experimentation with different hyperparameters.
 
+## Validation and Verification
+
+<img width="887" height="570" alt="image" src="https://github.com/user-attachments/assets/adf8049f-0196-4bd8-ac0c-c81674789647" />
+
+The training loss graph shows the model successfully learned the OCR patterns. Starting at 4.1, the loss steadily decreased to approximately 0.4 by epoch 400. The smooth curve, free of fluctuations, indicates stable training with good convergence and no overfitting.
+
+<img width="940" height="574" alt="image" src="https://github.com/user-attachments/assets/35e2a700-bfb8-416d-9e53-7dd242bf91a3" />
+
+The graph visualizes the model's learning progression. Starting near 0% accuracy, the model steadily improved in a stepwise pattern, reaching approximately 40% by epoch 100, then continued to climb through several accuracy plateaus. By epoch 250, the accuracy achieved around 95% and stabilized near 100% by epoch 300, maintaining this high performance through epoch 400.
+
+## CNN Training
+
+<img width="882" height="573" alt="image" src="https://github.com/user-attachments/assets/2f882324-8a00-45f4-a20a-3dfbf6c4ede7" />
+
+*OCR-CNN Predicting Accuracy: Max Pooling - 5 Kernels*
+
+<img width="872" height="570" alt="image" src="https://github.com/user-attachments/assets/4740952c-d9b4-41f4-ad75-e0a9a8b946a0" />
+
+*OCR-CNN Predicting Accuracy: Mean Pooling - 5 Kernels*
+
+<img width="869" height="442" alt="image" src="https://github.com/user-attachments/assets/91eaa9ab-ba7d-489f-989b-e5cf26281969" />
+
+*OCR-CNN Predicting Accuracy: No Pooling - 5 Kernels*
+
+<img width="863" height="557" alt="image" src="https://github.com/user-attachments/assets/dece5a12-f828-4f0f-9f0f-b43b467bbe3d" />
+
+*OCR-CNN Predicting Accuracy: No Pooling - 8 Kernels*
+
+
 ### Command Template
 
 ```bash
